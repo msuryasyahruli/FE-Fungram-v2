@@ -21,18 +21,18 @@ const Content = () => {
                 <img
                     src={require("../../assets/image/img28.jpg")}
                     alt="image 1"
-                    className="w-full object-cover"
+                    className="max-h-96 w-full object-contain"
                 />
                 <img
-                    src={require("../../assets/image/img29.jpg")}
+                    src={require("../../assets/image/Screenshot_1695048800.png")}
                     alt="image 2"
-                    className="w-full object-cover"
+                    className="max-h-96 w-full object-contain"
                 />
-                {/* <img
+                <img
                     src={require("../../assets/image/GyozaChicken.jpg")}
                     alt="image 3"
-                    className="w-full object-cover"
-                /> */}
+                    className="max-h-96 w-full object-contain"
+                />
             </Carousel>
             <div className='flex justify-between text-2xl my-2 sm:px-2'>
                 <div className='flex space-x-4'>
