@@ -4,9 +4,10 @@ import 'swiper/css';
 
 const Stories = () => {
     return (
-        <div className='max-w-[600px] my-4'>
-            <Swiper
-                slidesPerView={8}
+        <>
+            <div className='max-w-[600px] my-4'>
+                <Swiper
+                    slidesPerView={8}
                 // breakpoints={{
                 //     768: {
                 //         slidesPerView: 5,
@@ -25,21 +26,22 @@ const Stories = () => {
                 //         // spaceBetween: 50,
                 //     },
                 // }}
-            >
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-                <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
-            </Swiper>
-        </div>
+                >
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                    <SwiperSlide className='text-center'><img src={require("../../assets/image/profile.png")} alt="profilePic" className='p-1 rounded-full' /> <p>name</p> </SwiperSlide>
+                </Swiper>
+            </div>
+        </>
     )
 }
 

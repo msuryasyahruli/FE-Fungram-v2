@@ -5,31 +5,31 @@ import classNames from 'classnames'
 
 const Sidebar = () => {
     return (
-        <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex">
-            <div className='p-2 justify-center flex my-3 h-16 xl:hidden'>
-                <img src={require("../../assets/image/FuntechGramLogoW.png")} alt="logo" className='h-full' />
+        <>
+            <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex">
+                <div className='p-2 justify-center flex my-3 h-16 xl:hidden'>
+                    <img src={require("../../assets/image/FuntechGramLogoW.png")} alt="logo" className='h-full' />
+                </div>
+                <div className='p-2 justify-center flex my-3 h-16 minxl:hidden md:hidden'>
+                    <img src={require("../../assets/image/FunB.png")} alt="logo" className='h-full' />
+                </div>
+                <div className='mt-5 md:flex md:mt-0 w-full justify-evenly'>
+                    {SIDEBAR_LINKS.map((link) => (
+                        <SidebarLink key={link.key} link={link} />
+                    ))}
+                </div>
+                <div className="bottom-0 absolute w-full md:hidden">
+                    <SidebarLink key={Setting_LINKS.key} link={Setting_LINKS[0]} />
+                </div>
             </div>
-            <div className='p-2 justify-center flex my-3 h-16 minxl:hidden md:hidden'>
-                <img src={require("../../assets/image/FunB.png")} alt="logo" className='h-full' />
-            </div>
-            <div className='mt-5 md:flex md:mt-0'>
-                {SIDEBAR_LINKS.map((link) => (
-                    <SidebarLink key={link.key} link={link} />
-                ))}
-            </div>
-            <div className="bottom-0 absolute w-full md:hidden">
-                {Setting_LINKS.map((link) => (
-                    <SidebarLink key={link.key} link={link} />
-                ))}
-            </div>
-        </div>
+        </>
     )
 }
 
 export default Sidebar
 
 const linkClass =
-    'flex items-center gap-3 font-light px-4 hover:bg-gray-900 hover:no-underline hover:text-gray active:font-medium rounded h-11 transition-all text-base minmd:m-2 md:my-2'
+    'flex items-center gap-3 font-light minmd:px-4 hover:bg-gray-900 hover:no-underline hover:text-gray active:font-medium rounded h-11 transition-all text-base minmd:m-2 md:py-6 md:w-full md:justify-center'
 
 function SidebarLink({ link }) {
     const { pathname } = useLocation()
