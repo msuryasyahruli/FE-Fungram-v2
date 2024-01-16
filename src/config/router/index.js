@@ -8,6 +8,8 @@ import Setting from "../../pages/Setting";
 import Explore from "../../pages/Explore";
 import Chat from "../../pages/Chat";
 import Post from "../../pages/Post";
+import Login from "../../pages/Auth/Login";
+import Register from "../../pages/Auth/Register";
 
 const Router = () => {
   return (
@@ -23,6 +25,8 @@ const Router = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="setting" element={<Setting />} />
           </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>

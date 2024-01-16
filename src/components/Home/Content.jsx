@@ -65,16 +65,16 @@ const Content = () => {
                         </Carousel>}
                         <div className='flex justify-between text-2xl my-2 sm:px-2'>
                             <div className='flex space-x-4'>
-                                <button className='hover:text-blue-gray-500'><BsHeart /></button>
-                                <button className='hover:text-blue-gray-500'><BsChatLeftText /></button>
-                                <button className='hover:text-blue-gray-500'><BsShare /></button>
+                                <button className='hover:text-gray-500'><BsHeart /></button>
+                                <button className='hover:text-gray-500'><BsChatLeftText /></button>
+                                <button className='hover:text-gray-500'><BsShare /></button>
                             </div>
                             <div>
-                                <button className='hover:text-blue-gray-500'><BsBookmark /></button>
+                                <button className='hover:text-gray-500'><BsBookmark /></button>
                             </div>
                         </div>
                         <div className='font-semibold my-2 mb-4 sm:px-2'>
-                            <p className='my-2 cursor-pointer w-fit active:text-blue-gray-500s'>100 likes</p>
+                            <p className='my-2 cursor-pointer w-fit active:text-gray-500'>100 likes</p>
                             <p className='leading-tight cursor-pointer'>{posts.name} <span className='font-normal cursor-text'>{posts.caps}</span></p>
                             <p className='font-normal text-gray-500 cursor-pointer w-fit'>View all comment</p>
                         </div>
