@@ -8,10 +8,10 @@ const Sidebar = () => {
         <>
             <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex">
                 <div className='p-2 justify-center flex my-3 h-16 xl:hidden'>
-                    <img src={require("../../assets/image/FuntechGramLogoW.png")} alt="logo" className='h-full' />
+                    <img src={require("../../assets/image/FuntechGramLogoB.png")} alt="logo" className='h-full' />
                 </div>
                 <div className='p-2 justify-center flex my-3 h-16 minxl:hidden md:hidden'>
-                    <img src={require("../../assets/image/FunB.png")} alt="logo" className='h-full' />
+                    <img src={require("../../assets/image/FunW.png")} alt="logo" className='h-full' />
                 </div>
                 <div className='mt-5 md:flex md:mt-0 w-full justify-evenly'>
                     {SIDEBAR_LINKS.map((link) => (
@@ -29,7 +29,7 @@ const Sidebar = () => {
 export default Sidebar
 
 const linkClass =
-    'flex items-center gap-3 font-light minmd:px-4 hover:bg-gray-900 hover:no-underline hover:text-gray active:font-medium rounded h-11 transition-all text-base minmd:m-2 md:py-6 md:w-full md:justify-center'
+    'flex items-center gap-3 font-light minmd:px-4 hover:bg-gray-300 hover:no-underline hover:text-gray active:font-medium rounded h-11 transition-all text-base minmd:m-2 md:py-6 md:w-full md:justify-center'
 
 function SidebarLink({ link }) {
     const { pathname } = useLocation()

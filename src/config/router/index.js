@@ -12,20 +12,24 @@ import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
 
 const Router = () => {
+  const token = localStorage.getItem("token");
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate />}>
-            <Route index element={<Home />} />
-            <Route path="search" element={<Search />} />
-            <Route path="explore" element={<Explore />} />
-            <Route path="chat" element={<Chat />} />
-            <Route path="post" element={<Post />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="setting" element={<Setting />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
+          {token ?
+            <Route path="/" element={<Navigate />}>
+              <Route index element={<Home />} />
+              <Route path="search" element={<Search />} />
+              <Route path="explore" element={<Explore />} />
+              <Route path="chat" element={<Chat />} />
+              <Route path="post" element={<Post />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="setting" element={<Setting />} />
+            </Route>
+            :
+            <Route path="/" element={<Login />} />}
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>

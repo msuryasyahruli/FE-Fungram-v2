@@ -1,8 +1,11 @@
 import React from 'react'
+import Index from '../components/Setting/Index'
 
 const Setting = () => {
   return (
-    <div>Setting</div>
+    <>
+      <Index />
+    </>
   )
 }
 

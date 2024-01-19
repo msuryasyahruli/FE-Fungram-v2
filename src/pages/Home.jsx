@@ -4,7 +4,7 @@ import Index from '../components/Home/Index'
 const Home = () => {
   return (
     <>
-      <Index/>
+      {<Index/>}
     </>
   )
 }

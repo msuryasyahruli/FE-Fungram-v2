@@ -27,7 +27,7 @@ const SignUp = () => {
             .then((res) => {
                 if (res.data.message === "User created") {
                     Swal.fire("Success", "Register success", "success");
-                    navigate("/login");
+                    navigate("/");
                 } else {
                     Swal.fire({
                         title: "Error",
@@ -43,13 +43,18 @@ const SignUp = () => {
 
     return (
         <>
-            <div>
-                <input type="email" placeholder='Email' name='user_email' id='user_email' onChange={userChange} />
-                <input type="text" placeholder='Fullname' name='user_fullname' id='user_fullname' onChange={userChange} />
-                <input type="text" placeholder='Username' name='user_nickname' id='user_nickname' onChange={userChange} />
-                <input type="password" placeholder='Password' name='user_password' id='user_password' onChange={userChange} />
-                <button onClick={userSubmit}>Sign Up</button>
-                <p>Already have Funtechgram account? <span><Link to={'/login'} className='text-red-500'>Sign In</Link></span></p>
+            <div className='grid justify-center items-center h-svh'>
+                <div className='w-96 p-3 text-center items-center'>
+                    <img src={require('../../assets/image/FuntechGramLogoB.png')} alt="logo" className='p-10' />
+                    <div className='flex-col flex gap-2'>
+                        <input type="email" placeholder='Email' name='user_email' id='user_email' onChange={userChange} className='border-b py-3 outline-none' />
+                        <input type="text" placeholder='Fullname' name='user_fullname' id='user_fullname' onChange={userChange} className='border-b py-3 outline-none' />
+                        <input type="text" placeholder='Username' name='user_nickname' id='user_nickname' onChange={userChange} className='border-b py-3 outline-none' />
+                        <input type="password" placeholder='Password' name='user_password' id='user_password' onChange={userChange} className='border-b py-3 outline-none' />
+                    </div>
+                    <button onClick={userSubmit} className='my-6 bg-blue-700 px-5 py-2 rounded-sm text-white hover:bg-blue-600'>Sign Up</button>
+                    <p>Already have Funtechgram account? <span><Link to={'/'} className='text-red-500'>Sign In</Link></span></p>
+                </div>
             </div>
         </>
     )
