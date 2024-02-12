@@ -26,7 +26,7 @@ const Sidebar = () => {
                     {/* ))} */}
                 </div>
                 <div className="bottom-0 absolute w-full md:hidden">
-                    <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[0]} />
+                    <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[6]} />
                 </div>
             </div>
         </>

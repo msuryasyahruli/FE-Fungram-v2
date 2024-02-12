@@ -15,18 +15,18 @@ const Index = () => {
     };
 
     const fetchData = ((value) => {
-        const result = data.filter((product) => {
+        const result = data.filter((user) => {
             return (
-                product &&
-                product.product_name &&
-                product.product_name.toLowerCase().includes(value)
+                user &&
+                user.user_nickname &&
+                user.user_nickname.toLowerCase().includes(value)
             );
         });
         setResult(result);
     })
 
     useEffect(() => {
-        axios.get(`https://blanja-backend-v2.vercel.app/products`)
+        axios.get(`${process.env.REACT_APP_API_KEY}/users`)
             .then((res) => {
                 setData(res.data.data)
             })
@@ -52,7 +52,7 @@ const Index = () => {
                         <div className="flex flex-col bg-blue-gray-100 rounded-md my-4 p-2 gap-1 max-h-48 overflow-auto w-full">
                             {result.map((result, id) => (
                                 <button className="text-start flex justify-between bg-blue-gray-200 p-2 items-center rounded" key={id}>
-                                    {result.product_name}
+                                    {result.user_nickname}
                                     <BsSearch />
                                 </button>
                             ))}
