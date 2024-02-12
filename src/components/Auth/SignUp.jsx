@@ -30,7 +30,6 @@ const SignUp = () => {
                     navigate("/");
                 } else {
                     Swal.fire({
-                        title: "Error",
                         text: res.data.message,
                         icon: "info"
                     });
@@ -52,8 +51,9 @@ const SignUp = () => {
                         <input type="text" placeholder='Username' name='user_nickname' id='user_nickname' onChange={userChange} className='border-b py-3 outline-none' />
                         <input type="password" placeholder='Password' name='user_password' id='user_password' onChange={userChange} className='border-b py-3 outline-none' />
                     </div>
-                    <button onClick={userSubmit} className='my-6 bg-blue-700 px-5 py-2 rounded-sm text-white hover:bg-blue-600'>Sign Up</button>
-                    <p>Already have Funtechgram account? <span><Link to={'/'} className='text-red-500'>Sign In</Link></span></p>
+                    {!userData.user_email ? <button onClick={userSubmit} className='my-6 border-b-2 px-5 py-2 border-gray-400 text-gray-400' disabled>Sign Up</button> :
+                    <button onClick={userSubmit} className='my-6 border-b-2 border-blue-700 px-5 py-2 text-blue-700 hover:font-medium'>Sign Up</button> }
+                    <p>Already have Funtechgram account? <span><Link to={'/'} className='text-red-500'>Login</Link></span></p>
                 </div>
             </div>
         </>

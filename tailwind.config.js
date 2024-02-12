@@ -30,8 +30,11 @@ module.exports = withMT({
       'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
 
-      '1sm': {'max': '400px'},
-      // => @media (max-width: 400px) { ... }
+      '2sm': {'max': '500px'},
+      // => @media (max-width: 500px) { ... }
+      
+      'min2sm': '501px',
+      // => @media (min-width: 500px) { ... }
 
       'minsm': '640px',
       // => @media (min-width: 640px) { ... }

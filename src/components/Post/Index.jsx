@@ -59,7 +59,7 @@ const Index = () => {
 
     return (
         <>
-            <div className='w-full h-svh justify-center minmd:items-center grid '>
+            <div className='w-full justify-center minmd:items-center grid '>
                 <form onSubmit={handleSubmit}>
                     <div className='max-w-[60rem] px-4 py-8 md:px-2'>
                         <button onClick={handleImgClick}>

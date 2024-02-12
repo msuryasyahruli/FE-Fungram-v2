@@ -5,10 +5,10 @@ import Content from './Content'
 const Index = () => {
     return (
         <>
-            <div className='w-full h-svh minmd:py-8 justify-center flex'>
-                <div className='w-fit'>
+            <div className='w-full minmd:py-8 justify-center flex'>
+                <div className='md:w-full'>
                     <Header />
-                    {/* <hr /> */}
+                    <hr />
                     <Content />
                 </div>
             </div>

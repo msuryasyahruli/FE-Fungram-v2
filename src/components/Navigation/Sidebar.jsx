@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { SIDEBAR_LINKS, Setting_LINKS } from '../../config/constants'
+import { SIDEBAR_LINKS } from '../../config/constants'
 import classNames from 'classnames'
 
 const Sidebar = () => {
@@ -14,12 +14,19 @@ const Sidebar = () => {
                     <img src={require("../../assets/image/FunW.png")} alt="logo" className='h-full' />
                 </div>
                 <div className='mt-5 md:flex md:mt-0 w-full justify-evenly'>
-                    {SIDEBAR_LINKS.map((link) => (
-                        <SidebarLink key={link.key} link={link} />
-                    ))}
+                    {/* {SIDEBAR_LINKS.map((link) => ( */}
+                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[0]} />
+                        <div className='md:hidden'>
+                            <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[1]} />
+                        </div>
+                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[2]} />
+                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[3]} />
+                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[4]} />
+                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[5]} />
+                    {/* ))} */}
                 </div>
                 <div className="bottom-0 absolute w-full md:hidden">
-                    <SidebarLink key={Setting_LINKS.key} link={Setting_LINKS[0]} />
+                    <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[0]} />
                 </div>
             </div>
         </>

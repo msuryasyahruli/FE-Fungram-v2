@@ -41,14 +41,18 @@ const Header = () => {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
+
+    const onLink =()=>{
+        navigate('/setting')
+    }
     
     return (
         <>
-            <div className='justify-center minsm:pb-8 border-b border-blue-gray-900'>
-                <div className='border-b border-blue-gray-900 minmd:hidden sticky top-0 bg-black'>
-                    <button className='justify-center items-center flex p-2'> <BsGearFill className='w-6 h-6' /> </button>
+            <div className='justify-center minsm:pb-8'>
+                <div className='border-b minmd:hidden absolute w-full h-12 top-0 bg-white flex items-center'>
+                    <button className='justify-center items-center flex p-2' onClick={onLink}> <BsGearFill className='w-6 h-6' /> </button>
                 </div>
-                <div className='max-w-full h-fit grid minsm:grid-cols-3 sm:flex'>
+                <div className='h-fit grid minsm:grid-cols-3 sm:flex'>
                     <div className='minmd:w-full h-fit flex justify-center md:m-4 minsm:col-span-1'>
                         <div className='aspect-square w-36 h-36 sm:w-20 sm:h-20'>
                             <img src={require("../../assets/image/profile.png")} alt="profile" className='rounded-full w-full h-full object-cover cursor-pointer' />
@@ -78,7 +82,7 @@ const Header = () => {
                         <p>{user.user_fullname}</p>
                         <p>{user.user_bio}</p>
                     </div>
-                    <div className='grid grid-cols-3 text-center py-2 border-t border-blue-gray-900'>
+                    <div className='grid grid-cols-3 text-center py-2 border-y'>
                         <div><p className='font-semibold'>{posts.length}</p> <p>Posts</p></div>
                         <div><p className='font-semibold'>0</p> <p>Followers</p></div>
                         <div><p className='font-semibold'>0</p> <p>Following</p></div>

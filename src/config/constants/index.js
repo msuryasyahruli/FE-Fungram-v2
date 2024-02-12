@@ -25,21 +25,18 @@ export const SIDEBAR_LINKS = [
 		icon: <BsPlusCircle/>,
 		iconFill: <BsPlusCircleFill/>
 	},
-	// {
-	// 	key: 'Chat',
-	// 	path: '/chat',
-	// 	icon: <BsChat/>,
-	// 	iconFill: <BsChatFill/>
-	// },
+	{
+		key: 'Chat',
+		path: '/chat',
+		icon: <BsChat/>,
+		iconFill: <BsChatFill/>
+	},
 	{
 		key: 'Profile',
 		path: '/profile',
 		icon: <BsPersonCircle/>,
 		iconFill: <BsPersonCircle/>
-	}
-]
-
-export const Setting_LINKS = [
+	},
 	{
 		key: 'Setting',
 		path: '/setting',

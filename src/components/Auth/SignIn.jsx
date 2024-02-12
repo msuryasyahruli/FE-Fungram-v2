@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 const SignIn = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [userData, setUserData] = useState({
         user_email: "",
@@ -25,13 +25,11 @@ const SignIn = () => {
             .then((res) => {
                 if (res.data.message === "Email is incorrect") {
                     Swal.fire({
-                        title: "Error",
                         text: res.data.message,
                         icon: "info"
                     });
                 } else if (res.data.message === "Password is incorrect") {
                     Swal.fire({
-                        title: "Error",
                         text: res.data.message,
                         icon: "info"
                     });
@@ -47,6 +45,7 @@ const SignIn = () => {
                     }, 1000)
                     localStorage.setItem("token", res.data.data.token);
                     localStorage.setItem("userId", res.data.data.user_id);
+                    localStorage.setItem("userNick", res.data.data.user_nickname);
                 }
             })
             .catch((err) => {
@@ -68,8 +67,10 @@ const SignIn = () => {
                         <input type="email" placeholder='Email' name='user_email' id='user_email' onChange={userChange} className='border-b py-3 outline-none' />
                         <input type="password" placeholder='Password' name='user_password' id='user_password' onChange={userChange} className='border-b py-3 outline-none' />
                     </div>
-                    <button onClick={userSubmit} className='my-6 bg-blue-700 px-5 py-2 rounded-sm text-white hover:bg-blue-600'>Sign In</button>
-                    <p>Don’t have Funtechgram account? <span><Link to={'/register'} className='text-red-500'>Sign Up</Link></span></p>
+                    {!userData.user_email || !userData.user_password ? 
+                    <button onClick={userSubmit} disabled className='my-6 border-b-2 px-5 py-2 border-gray-400 text-gray-400'>Sign In</button> :
+                    <button onClick={userSubmit} className='my-6 border-b-2 border-blue-700 px-5 py-2 text-blue-700 hover:font-medium'>Sign In</button> }
+                    <p>Don’t have Funtechgram account? <span><Link to={'/register'} className='text-red-500'>Register</Link></span></p>
                 </div>
             </div>
         </>
