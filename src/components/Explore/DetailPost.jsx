@@ -16,7 +16,7 @@ const DetailPost = ({ img, nick, caption, children }) => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                className='flex justify-center items-center'
+                className='flex justify-center items-center backdrop-blur-sm'
             >
                 <div className='bg-white minmd:w-9/12 grid minmd:grid-cols-2 rounded'>
                     <section className='flex items-center h-full md:hidden'>

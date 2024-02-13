@@ -10,6 +10,7 @@ import Chat from "../../pages/Chat";
 import Post from "../../pages/Post";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
+import ViewerProfile from "../../pages/ViewerProfile";
 
 const Router = () => {
   const token = localStorage.getItem("token");
@@ -27,6 +28,7 @@ const Router = () => {
               <Route path="post" element={<Post />} />
               <Route path="profile" element={<Profile />} />
               <Route path="setting" element={<Setting />} />
+              <Route path=":nick/:id" element={<ViewerProfile />} />
             </Route>
             :
             <Route path="/" element={<Login />} />}

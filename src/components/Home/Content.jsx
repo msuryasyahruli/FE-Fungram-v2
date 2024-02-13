@@ -3,8 +3,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsBookmark, BsBookmarkFill, BsChatLeftText, BsHeart, BsHeartFill, BsShare, BsThreeDots } from 'react-icons/bs'
 import DetailPost from '../Explore/DetailPost'
+import { Link } from 'react-router-dom'
 
 const Content = () => {
+    const userNick = localStorage.getItem("userNick")
     const [posts, setPosts] = useState([])
     // const [isLoading, setIsLoading] = useState(true)
 
@@ -44,7 +46,7 @@ const Content = () => {
                             <div className='flex items-center'>
                                 <button><img src={require("../../assets/image/profile.png")} alt="profilePic" className='w-10 h-10 rounded-full' /></button>
                                 <div className='px-2'>
-                                    <p className='font-semibold cursor-pointer'>{posts.user_nickname}</p>
+                                    <Link to={posts.user_nickname === userNick ? '/profile' : `/${posts.user_nickname}/${posts.user_id}`} className='font-semibold cursor-pointer'>{posts.user_nickname}</Link>
                                     {/* <p className='text-sm'>location</p> */}
                                 </div>
                             </div>
