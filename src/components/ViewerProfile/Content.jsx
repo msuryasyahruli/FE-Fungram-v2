@@ -1,5 +1,5 @@
 import React from 'react'
-import DetailPost from '../Explore/DetailPost'
+import DetailPost from '../Modal/DetailPost'
 
 const Content = ({ posts, nick }) => {
     return (

@@ -7,8 +7,7 @@ const Index = () => {
 
     const isLogout = () => {
         localStorage.clear();
-        navigate("/");
-        window.location.reload()
+        navigate("/login");
     };
 
     return (

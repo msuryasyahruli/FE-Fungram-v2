@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import gambar from "../../assets/image/img28.jpg"
 import axios from 'axios'
-import DetailPost from '../Explore/DetailPost'
+import DetailPost from '../Modal/DetailPost'
 
 const Content = () => {
     const userId = localStorage.getItem("userId")

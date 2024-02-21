@@ -18,11 +18,11 @@ const Header = () => {
             })
             .catch((err) => {
                 console.log(err);
-                if (err.response.data.message === "Token expired" || "Token invalid") {
-                    localStorage.clear();
-                    navigate("/");
-                    window.location.reload()
-                }
+                // if (err.response.data.message === "Token expired" || "Token invalid") {
+                //     localStorage.clear();
+                //     navigate("/");
+                //     window.location.reload()
+                // }
             });
             // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
@@ -62,7 +62,7 @@ const Header = () => {
                         <div className='minsm:flex items-center gap-4 py-1'>
                             <p className='text-xl'>{user.user_nickname}</p>
                             <button className='h-8 px-4 rounded-lg bg-blue-gray-300 sm:my-2'>Edit profile</button>
-                            <button className='justify-center items-center flex md:hidden'> <BsGearFill className='w-6 h-6' /> </button>
+                            <button className='justify-center items-center flex md:hidden' onClick={onLink}> <BsGearFill className='w-6 h-6' /> </button>
                         </div>
                         <div className='sm:hidden'>
                             <div className='flex text-center gap-10 my-4'>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import DetailPost from './DetailPost'
+import DetailPost from '../Modal/DetailPost'
 import Index from '../Search/Index'
 
 const Content = () => {

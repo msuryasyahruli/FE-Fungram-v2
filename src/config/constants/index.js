@@ -1,4 +1,5 @@
 import { BsChat, BsChatFill, BsCompass, BsCompassFill, BsGear, BsGearFill, BsHouse, BsHouseFill, BsPersonCircle, BsPlusCircle, BsPlusCircleFill, BsSearch } from "react-icons/bs";
+const userNick = localStorage.getItem("userNick");
 
 export const SIDEBAR_LINKS = [
 	{
@@ -33,7 +34,7 @@ export const SIDEBAR_LINKS = [
 	},
 	{
 		key: 'Profile',
-		path: '/profile',
+		path: `/${userNick}`,
 		icon: <BsPersonCircle/>,
 		iconFill: <BsPersonCircle/>
 	},

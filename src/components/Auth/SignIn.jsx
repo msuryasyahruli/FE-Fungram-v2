@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 const SignIn = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [userData, setUserData] = useState({
         user_email: "",
@@ -40,8 +40,8 @@ const SignIn = () => {
                         icon: "success"
                     });
                     setTimeout(function () {
-                        // navigate("/");
-                        window.location.reload()
+                        navigate("/");
+                        // window.location.reload()
                     }, 1000)
                     localStorage.setItem("token", res.data.data.token);
                     localStorage.setItem("userId", res.data.data.user_id);

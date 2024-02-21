@@ -2,7 +2,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsBookmark, BsBookmarkFill, BsChatLeftText, BsHeart, BsHeartFill, BsShare, BsThreeDots } from 'react-icons/bs'
-import DetailPost from '../Explore/DetailPost'
+import DetailPost from '../Modal/DetailPost'
 import { Link } from 'react-router-dom'
 
 const Content = () => {
@@ -43,13 +43,13 @@ const Content = () => {
                 {posts.map((posts, Index) => (
                     <div key={Index} className='py-2'>
                         <div className='flex pb-2 justify-between items-center 2sm:px-2'>
-                            <div className='flex items-center'>
+                            <Link to={posts.user_nickname === userNick ? `/${userNick}` : `/${posts.user_nickname}/${posts.user_id}`} className='flex items-center'>
                                 <button><img src={require("../../assets/image/profile.png")} alt="profilePic" className='w-10 h-10 rounded-full' /></button>
                                 <div className='px-2'>
-                                    <Link to={posts.user_nickname === userNick ? '/profile' : `/${posts.user_nickname}/${posts.user_id}`} className='font-semibold cursor-pointer'>{posts.user_nickname}</Link>
+                                    <div className='font-semibold'>{posts.user_nickname}</div>
                                     {/* <p className='text-sm'>location</p> */}
                                 </div>
-                            </div>
+                            </Link>
                             <div className='text-xl'>
                                 <button><BsThreeDots /></button>
                             </div>
@@ -83,8 +83,8 @@ const Content = () => {
                                 <button className='hover:text-gray-500' ><BsBookmark /></button>
                             </div>
                         </div>
-                        <div className='font-semibold my-2 mb-4 2sm:px-2'>
-                            <p className='my-2 cursor-pointer w-fit active:text-gray-500'>{like} likes</p>
+                        <div className='font-semibold mb-4 2sm:px-2'>
+                            <p className='cursor-pointer w-fit active:text-gray-500'>{like} likes</p>
                             {posts.post_captions ? <p className='font-normal'><span className='leading-tight cursor-pointer font-semibold'>{posts.user_nickname} </span>{posts.post_captions}</p> : ''}
                             <p className='font-normal text-gray-500 cursor-pointer w-fit'>View all comment</p>
                         </div>
