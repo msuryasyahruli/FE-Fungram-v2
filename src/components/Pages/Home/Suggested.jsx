@@ -47,18 +47,21 @@ const Suggested = () => {
         <>
             <div className='my-4'>
                 <div className='flex py-2 mb-2 justify-between items-center'>
-                    <div className='flex cursor-pointer items-center'>
-                        <img src={require("../../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
-                        {isLoading ?
-                            <div role='status' class="max-w-sm animate-pulse px-2">
-                                <div class="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-2"></div>
-                                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-28"></div>
-                            </div> :
+                    {isLoading ?
+                        <div role='status' className="max-w-sm animate-pulse flex items-center gap-2">
+                            <div className="h-12 w-12 bg-gray-200 rounded-full dark:bg-gray-700" />
+                            <div>
+                                <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-2" />
+                                <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-28" />
+                            </div>
+                        </div> :
+                        <div className='flex cursor-pointer items-center'>
+                            <img src={require("../../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
                             <div className='px-2'>
                                 <p className='font-semibold'>{user.user_nickname}</p>
                                 <p className='text-sm text-gray-400'>{user.user_fullname}</p>
-                            </div>}
-                    </div>
+                            </div>
+                        </div>}
                     <div className='cursor-pointer'>
                         <BsThreeDotsVertical />
                     </div>
@@ -78,9 +81,7 @@ const Suggested = () => {
                                     <p className='text-gray-400'>{data.user_fullname}</p>
                                 </div>
                             </div>
-                            <div>
-                                <p className='text-blue-500'>Follow</p>
-                            </div>
+                            <p className='text-blue-500'>Follow</p>
                         </div>
                     ))}
             </div>
