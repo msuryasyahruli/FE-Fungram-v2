@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import SuggestedSection from '../../Skeleton/SuggestedSection';
 
 const Suggested = () => {
     const token = localStorage.getItem("token");
@@ -47,7 +48,7 @@ const Suggested = () => {
             <div className='my-4'>
                 <div className='flex py-2 mb-2 justify-between items-center'>
                     <div className='flex cursor-pointer items-center'>
-                        <img src={require("../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
+                        <img src={require("../../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
                         {isLoading ?
                             <div role='status' class="max-w-sm animate-pulse px-2">
                                 <div class="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-2"></div>
@@ -66,20 +67,22 @@ const Suggested = () => {
                     <p className='text-gray-500 font-medium'>Suggested for you</p>
                     <p>See all</p>
                 </div>
-                {data.map((data, Index) => (
-                    <div key={Index} className='flex py-2 justify-between items-center'>
-                        <div className='flex'>
-                            <img src={require("../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
-                            <div className='px-2'>
-                                <p className='font-semibold'>{data.user_nickname}</p>
-                                <p className='text-gray-400'>{data.user_fullname}</p>
+                {isLoading ?
+                    <SuggestedSection /> :
+                    data.map((data, Index) => (
+                        <div key={Index} className='flex py-2 justify-between items-center'>
+                            <div className='flex'>
+                                <img src={require("../../../assets/image/profile.png")} alt="profilePic" className='w-12 h-12 rounded-full ' />
+                                <div className='px-2'>
+                                    <p className='font-semibold'>{data.user_nickname}</p>
+                                    <p className='text-gray-400'>{data.user_fullname}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p className='text-blue-500'>Follow</p>
                             </div>
                         </div>
-                        <div>
-                            <p className='text-blue-500'>Follow</p>
-                        </div>
-                    </div>
-                ))}
+                    ))}
             </div>
         </>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import Index from '../components/ViewerProfile/Index'
+import Index from '../components/Pages/ViewerProfile/Index'
 
 const ViewerProfile = () => {
     return (

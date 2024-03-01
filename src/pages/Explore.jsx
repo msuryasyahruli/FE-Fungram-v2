@@ -1,5 +1,5 @@
 import React from 'react'
-import Content from '../components/Explore/Content'
+import Content from '../components/Pages/Explore/Content'
 
 const Explore = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import Index from '../components/Post/Index'
+import Index from '../components/Pages/Post/Index'
 
 const Post = () => {
   return (

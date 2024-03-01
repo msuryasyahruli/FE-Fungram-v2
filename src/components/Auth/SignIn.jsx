@@ -35,9 +35,10 @@ const SignIn = () => {
                     });
                 } else {
                     Swal.fire({
-                        title: "Good job!",
-                        text: "Login Success",
-                        icon: "success"
+                        title: "Login Success",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000
                     });
                     setTimeout(function () {
                         navigate("/");

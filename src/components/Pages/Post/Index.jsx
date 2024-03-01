@@ -81,7 +81,7 @@ const Index = () => {
                                     className="w-full rounded"
                                 />
                             ) : (
-                                <img src={require("../../assets/image/add img.png")} alt="addImg" />
+                                <img src={require("../../../assets/image/add img.png")} alt="addImg" />
                             )}
                             <input
                                 className="border hidden"

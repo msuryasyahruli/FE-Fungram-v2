@@ -1,5 +1,5 @@
 import React from 'react'
-import Index from '../components/Setting/Index'
+import Index from '../components/Pages/Setting/Index'
 
 const Setting = () => {
   return (

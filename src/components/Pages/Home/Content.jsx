@@ -1,8 +1,8 @@
 // import { Carousel } from '@material-tailwind/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { BsBookmark, BsBookmarkFill, BsChatLeftText, BsHeart, BsHeartFill, BsShare, BsThreeDots } from 'react-icons/bs'
-import DetailPost from '../Modal/DetailPost'
+import { BsBookmark, BsChatLeftText, BsHeart, BsHeartFill, BsShare, BsThreeDots } from 'react-icons/bs'
+import DetailPost from '../../Modal/DetailPost'
 import { Link } from 'react-router-dom'
 
 const Content = () => {
@@ -44,7 +44,7 @@ const Content = () => {
                     <div key={Index} className='py-2'>
                         <div className='flex pb-2 justify-between items-center 2sm:px-2'>
                             <Link to={posts.user_nickname === userNick ? `/${userNick}` : `/${posts.user_nickname}/${posts.user_id}`} className='flex items-center'>
-                                <button><img src={require("../../assets/image/profile.png")} alt="profilePic" className='w-10 h-10 rounded-full' /></button>
+                                <button><img src={require("../../../assets/image/profile.png")} alt="profilePic" className='w-10 h-10 rounded-full' /></button>
                                 <div className='px-2'>
                                     <div className='font-semibold'>{posts.user_nickname}</div>
                                     {/* <p className='text-sm'>location</p> */}
