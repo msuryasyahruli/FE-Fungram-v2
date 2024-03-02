@@ -6,7 +6,7 @@ import classNames from 'classnames'
 const Sidebar = () => {
     return (
         <>
-            <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex">
+            <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex h-full">
                 <div className='p-2 justify-center flex my-3 h-16 xl:hidden'>
                     <img src={require("../../assets/image/FuntechGramLogoB.png")} alt="logo" className='h-full' />
                 </div>
@@ -25,7 +25,7 @@ const Sidebar = () => {
                         <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[5]} />
                     {/* ))} */}
                 </div>
-                <div className="bottom-0 absolute w-full md:hidden">
+                <div className="bottom-3 absolute w-full md:hidden">
                     <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[6]} />
                 </div>
             </div>

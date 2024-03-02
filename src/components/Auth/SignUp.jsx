@@ -21,7 +21,7 @@ const SignUp = () => {
         // console.log(userData);
     };
 
-    const userSubmit = (e) => {
+    const userSubmit = () => {
         axios
             .post(`${process.env.REACT_APP_API_KEY}/users/register`, userData)
             .then((res) => {
