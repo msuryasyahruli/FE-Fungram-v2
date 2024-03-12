@@ -79,7 +79,7 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
                     <section className='flex items-center h-full md:hidden'>
                         <img src={img} alt="post" />
                     </section>
-                    <section className='border-s relative md:h-screen'>
+                    <section className='minmd:border-s relative md:h-screen overflow-auto'>
                         <div className='flex p-3 justify-between items-center border-b'>
                             <FaArrowLeft className='minmd:hidden' onClick={handleClose} />
                             <div className='flex items-center'>
@@ -92,9 +92,10 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
                         </div>
                         <img src={img} alt="post" className='minmd:hidden' />
                         <div className='md:flex md:flex-col-reverse'>
-                            {!comments ? <div className='justify-center items-center flex minlg:h-[500px] minmd:h-[350px] md:w-screen'>
-                                <p>No comments yet.</p>
-                            </div> :
+                            {!comments ?
+                                <div className='justify-center items-center flex minlg:h-[500px] minmd:h-[350px] md:w-screen'>
+                                    <p>No comments yet.</p>
+                                </div> :
                                 <div className='overflow-auto minlg:h-[500px] minmd:h-[350px]'>
                                     {comments.map((comment, i) => (
                                         <div key={i} className='font-semibold flex p-3 justify-between md:w-screen'>
@@ -122,7 +123,10 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
                                 </div>
                                 <div className='p-3 flex'>
                                     <input type="text" placeholder='Add comment' className='outline-none w-full' id='comment' name='comment_text' onChange={commentChange} />
-                                    <button className='text-blue-500' onClick={onSent}>Sent</button>
+                                    {comment.comment_text ?
+                                        <button className='text-blue-500' onClick={onSent}>Sent</button> :
+                                        <button className='text-gray-500 cursor-not-allowed' disabled>Sent</button>
+                                    }
                                 </div>
                             </section>
                         </div>
