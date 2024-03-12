@@ -4,28 +4,21 @@ import { SIDEBAR_LINKS } from '../../config/constants'
 import classNames from 'classnames'
 
 const Sidebar = () => {
+    const SIDEBAR_LINKS_MOBILE = SIDEBAR_LINKS.slice(0, 1).concat(SIDEBAR_LINKS.slice(2).slice(0,-1))
+    // console.log(SIDEBAR_LINKS_MOBILE)
     return (
         <>
-            <div className="relative justify-center w-48 md:justify-center xl:w-full md:flex h-full">
-                <div className='p-2 justify-center flex my-3 h-16 xl:hidden'>
-                    <img src={require("../../assets/image/FuntechGramLogoB.png")} alt="logo" className='h-full' />
+            <div className="w-48 xl:w-full md:flex">
+                <div className='p-2 justify-center flex my-3 h-16 md:hidden'>
+                    <img src={require("../../assets/image/FuntechGramLogoB.png")} alt="logo" className='h-full xl:hidden' />
+                    <img src={require("../../assets/image/FunW.png")} alt="logo" className='h-full minxl:hidden' />
                 </div>
-                <div className='p-2 justify-center flex my-3 h-16 minxl:hidden md:hidden'>
-                    <img src={require("../../assets/image/FunW.png")} alt="logo" className='h-full' />
+                <div className='md:flex w-full justify-around'>
+                    {SIDEBAR_LINKS_MOBILE.map((link) => (
+                        <SidebarLink key={link.key} link={link} />
+                    ))}
                 </div>
-                <div className='mt-5 md:flex md:mt-0 w-full justify-evenly'>
-                    {/* {SIDEBAR_LINKS.map((link) => ( */}
-                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[0]} />
-                        <div className='md:hidden'>
-                            <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[1]} />
-                        </div>
-                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[2]} />
-                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[3]} />
-                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[4]} />
-                        <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[5]} />
-                    {/* ))} */}
-                </div>
-                <div className="bottom-3 absolute w-full md:hidden">
+                <div className="bottom-0 absolute w-full md:hidden">
                     <SidebarLink key={SIDEBAR_LINKS.key} link={SIDEBAR_LINKS[6]} />
                 </div>
             </div>

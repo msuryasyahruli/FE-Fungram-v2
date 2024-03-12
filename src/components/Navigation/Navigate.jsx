@@ -5,11 +5,11 @@ import { Outlet } from 'react-router-dom'
 const Navigate = () => {
     return (
         <>
-            <div className='flex h-svh md:flex-col'>
-                <div className='flex border-e md:absolute md:bottom-0 md:w-full'>
+            <div className='flex'>
+                <div className='w-fit minmd:h-svh minmd:border-e fixed bottom-0 md:w-full bg-white z-10'>
                     <Sidebar />
                 </div>
-                <div className="w-svw flex overflow-auto md:my-12">
+                <div className='w-svw minxl:ms-48 minmd:ms-20 md:my-12'>
                     <Outlet />
                 </div>
             </div>
