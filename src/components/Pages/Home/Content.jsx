@@ -13,7 +13,7 @@ const Content = () => {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_KEY}/post?page=1&limit=5`)
+            .get(`${process.env.REACT_APP_API_KEY}/post`, { params: { page: 1, limit: 5 } })
             .then((res) => {
                 setPosts(res.data.data)
                 setIsLoading(false)
@@ -24,7 +24,7 @@ const Content = () => {
     const fetchMoreData = () => {
         setTimeout(() => {
             axios
-                .get(`${process.env.REACT_APP_API_KEY}/post?page=${index}&limit=5`)
+                .get(`${process.env.REACT_APP_API_KEY}/post`, { params: { page: `${index}`, limit: 5 } })
                 .then((res) => {
                     setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
                     res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);

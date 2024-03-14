@@ -1,47 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
 import Content from './Content'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import getPostsByUserAction from '../../../config/redux/action/postsAction/getPostByUserAction'
+import getUserAction from '../../../config/redux/action/usersAction/getUserAction'
+import { useNavigate } from 'react-router-dom/dist'
 
 const Index = () => {
     const { nick } = useParams()
     const { id } = useParams()
-    const [user, setUser] = useState([])
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const { user } = useSelector((state) => state.users);
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/users/${nick}`)
-            .then((res) => {
-                setUser(res.data.data[0]);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        dispatch(getUserAction(navigate, nick))
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [nick]);
 
-    const [posts, setPosts] = useState([])
-
+    const { postByUser } = useSelector((state) => state.posts);
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/post/user/${id}`)
-            .then((res) => {
-                setPosts(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        dispatch(getPostsByUserAction(id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [id]);
 
     return (
         <>
             <div className='w-full minmd:py-8 justify-center flex'>
                 <div className='md:w-full'>
-                    <Header totalPost={posts.length} user={user} nick={nick} />
+                    <Header totalPost={postByUser.length} user={user} nick={nick} />
                     <hr />
-                    <Content posts={posts} nick={nick} />
+                    <Content posts={postByUser} nick={nick} />
                 </div>
             </div>
         </>

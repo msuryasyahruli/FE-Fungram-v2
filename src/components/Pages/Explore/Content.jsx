@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import DetailPost from '../../Modal/DetailPost'
-import Index from '../Search/Index'
+import Search from '../Search/Index'
+import { useDispatch, useSelector } from 'react-redux'
+import getPostsAction from '../../../config/redux/action/postsAction/getPostsAction'
 
 const Content = () => {
-    const [posts, setPosts] = useState([])
-
+    const [isLoading, setIsLoading] = useState(true)
+    const dispatch = useDispatch();
+    const { posts } = useSelector((state) => state.posts);
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/post`)
-            .then((res) => {
-                setPosts(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [])
+        dispatch(getPostsAction({ page: 1, limit: 9 }, setIsLoading));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [setIsLoading]);
 
     return (
         <>
-        <div className='minmd:hidden'>
-        <Index/>
-        </div>
+            <div className='minmd:hidden'>
+                <Search />
+            </div>
             <div className='w-full justify-center flex'>
                 <div className='py-6 md:py-2'>
                     <div className='grid grid-cols-3 gap-1 sm:gap-0.5 max-w-[60rem]'>

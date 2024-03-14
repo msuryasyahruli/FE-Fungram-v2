@@ -38,23 +38,11 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
         });
     };
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-    });
-
     const onSent = (e) => {
         e.preventDefault();
         axios.post(`${process.env.REACT_APP_API_KEY}/comment`, comment)
             .then((res) => {
-                Toast.fire({
+                Swal.fire({
                     icon: "success",
                     title: res.data.message,
                 });

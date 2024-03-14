@@ -1,17 +1,19 @@
 import React, { useRef, useState } from 'react'
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import createPostAction from '../../../config/redux/action/postsAction/createPostAction';
 
 const Index = () => {
+    const dispatch = useDispatch()
     const userId = localStorage.getItem('userId')
-    const [addPost, setAddPost] = useState({
+    const [data, setData] = useState({
         user_id: `${userId}`,
         post_captions: ""
     })
 
     const handleChange = (e) => {
-        setAddPost({
-            ...addPost,
+        setData({
+            ...data,
             [e.target.name]: e.target.value,
         });
         // console.log(addPost);
@@ -27,7 +29,7 @@ const Index = () => {
     const handleUpload = (e) => {
         const img = e.target.files[0];
         setPhoto(img);
-        if (img.size > 2000000) {
+        if (img.size > 2097152) {
             Swal.fire({
                 icon: "error",
                 title: "File size should not be more than 2mb",
@@ -40,32 +42,7 @@ const Index = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("user_id", addPost.user_id);
-        formData.append("post_captions", addPost.post_captions);
-        formData.append("post_image", photo);
-        axios
-            .post(`${process.env.REACT_APP_API_KEY}/post`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                Swal.fire({
-                    icon: "success",
-                    title: res.data.message,
-                });
-                setTimeout(function () {
-                    window.location.reload();
-                }, 1000);
-            })
-            .catch((err) => {
-                console.log(err);
-                Swal.fire({
-                    icon: "error",
-                    title: err.message,
-                });
-            });
+        dispatch(createPostAction(data, photo))
     };
 
     return (
@@ -92,7 +69,7 @@ const Index = () => {
                             />
                         </div>
                         <div>
-                            <textarea name="post_captions" id="captions" placeholder='Captions' className='w-full my-4 bg-gray-200 p-2 rounded outline-none' value={addPost.post_captions} onChange={handleChange}></textarea>
+                            <textarea name="post_captions" id="captions" placeholder='Captions' className='w-full my-4 bg-gray-200 p-2 rounded outline-none' value={data.post_captions} onChange={handleChange}></textarea>
                         </div>
                         <button type="submit" className={!photo ? 'hidden' : 'bg-light-blue-700 text-white px-10 py-2 rounded hover:bg-light-blue-800 active:bg-gray-900'}>Post</button>
                     </div>

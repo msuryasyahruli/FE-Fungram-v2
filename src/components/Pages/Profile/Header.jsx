@@ -1,51 +1,14 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BsGearFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
-    const token = localStorage.getItem("token");
-    const [user, setUser] = useState([])
+const Header = ({ posts, user }) => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/users/profile`, {
-                headers: { 'Authorization': 'Bearer ' + token }
-            })
-            .then((res) => {
-                setUser(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-                // if (err.response.data.message === "Token expired" || "Token invalid") {
-                //     localStorage.clear();
-                //     navigate("/");
-                //     window.location.reload()
-                // }
-            });
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
-
-    const userId = localStorage.getItem("userId")
-    const [posts, setPosts] = useState([])
-
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/post/user/${userId}`)
-            .then((res) => {
-                setPosts(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userId])
-
-    const onLink =()=>{
+    const onLink = () => {
         navigate('/setting')
     }
-    
+
     return (
         <>
             <div className='justify-center minsm:pb-8'>

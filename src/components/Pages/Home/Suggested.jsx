@@ -1,47 +1,31 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import SuggestedSection from '../../Skeleton/SuggestedSection';
+import { useDispatch, useSelector } from 'react-redux';
+import getUserProfileAction from '../../../config/redux/action/usersAction/getUserProfileAction';
+import getAllUserAction from '../../../config/redux/action/usersAction/getAllUserAction';
 
 const Suggested = () => {
     const token = localStorage.getItem("token");
-    const [user, setUser] = useState([])
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true)
+    const dispatch = useDispatch()
+    const { user } = useSelector((state) => state.users);
 
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/users/profile`, {
-                headers: { 'Authorization': 'Bearer ' + token }
-            })
-            .then((res) => {
-                setUser(res.data.data);
-                setIsLoading(false)
-            })
-            .catch((err) => {
-                console.log(err);
-                if (err.response.data.message === "Token expired" || "Token invalid") {
-                    localStorage.clear();
-                    navigate("/");
-                    window.location.reload()
-                }
-            });
+        dispatch(getUserProfileAction(token, navigate, setIsLoading))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const [users, setUsers] = useState([])
-    const sliceSlice = users.slice(-5)
+    
+    const { allUsers } = useSelector((state) => state.users);
+    const sliceSlice = allUsers.slice(-5)
     const data = sliceSlice.reverse()
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_KEY}/users`)
-            .then((res) => {
-                setUsers(res.data.data)
-            })
-    }, [])
-
-    // const name = [{nick:'account 1'},{nick:'account 2'},{nick:'account 3'},{nick:'account 4'},{nick:'account 5'}]
+        dispatch(getAllUserAction(navigate))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
