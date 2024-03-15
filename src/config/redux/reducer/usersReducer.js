@@ -19,11 +19,11 @@ const usersReducer = (state = initialState, action) => {
             ...state,
             user: action.payload,
         }
-    } else if (action.type === "CREATE_USER") {
+    } else if (action.type === "REGISTER_USER") {
+        return state
+    } else if (action.type === "LOGIN_USER") {
         return state
     } else if (action.type === "UPDATE_USER") {
-        return state
-    } else if (action.type === "DELETE_USER") {
         return state
     } else {
         return state
