@@ -1,10 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2';
+import loginAction from '../../config/redux/action/usersAction/loginAction';
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const [userData, setUserData] = useState({
         user_email: "",
@@ -16,47 +17,10 @@ const SignIn = () => {
             ...userData,
             [e.target.name]: e.target.value,
         });
-        // console.log(userData);
     };
 
     const userSubmit = () => {
-        axios
-            .post(`${process.env.REACT_APP_API_KEY}/users/login`, userData)
-            .then((res) => {
-                if (res.data.message === "Email is incorrect") {
-                    Swal.fire({
-                        text: res.data.message,
-                        icon: "info"
-                    });
-                } else if (res.data.message === "Password is incorrect") {
-                    Swal.fire({
-                        text: res.data.message,
-                        icon: "info"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Login Success",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                    setTimeout(function () {
-                        navigate("/");
-                        window.location.reload()
-                    }, 1000)
-                    localStorage.setItem("token", res.data.data.token);
-                    localStorage.setItem("userId", res.data.data.user_id);
-                    localStorage.setItem("userNick", res.data.data.user_nickname);
-                }
-            })
-            .catch((err) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Account doesnt exist!",
-                });
-                console.log(err);
-            });
+        dispatch(loginAction(userData, navigate))
     };
 
     return (

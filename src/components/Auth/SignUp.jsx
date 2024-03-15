@@ -1,10 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import registerAction from '../../config/redux/action/usersAction/registerAction';
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const [userData, setUserData] = useState({
         user_email: "",
@@ -18,26 +19,10 @@ const SignUp = () => {
             ...userData,
             [e.target.name]: e.target.value,
         });
-        // console.log(userData);
     };
 
     const userSubmit = () => {
-        axios
-            .post(`${process.env.REACT_APP_API_KEY}/users/register`, userData)
-            .then((res) => {
-                if (res.data.message === "User created") {
-                    Swal.fire("Success", "Register success", "success");
-                    navigate("/");
-                } else {
-                    Swal.fire({
-                        text: res.data.message,
-                        icon: "info"
-                    });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        dispatch(registerAction(userData, navigate))
     };
 
     return (
@@ -52,7 +37,7 @@ const SignUp = () => {
                         <input type="password" placeholder='Password' name='user_password' id='user_password' onChange={userChange} className='border-b py-3 outline-none' />
                     </div>
                     {!userData.user_email ? <button onClick={userSubmit} className='my-6 border-b-2 px-5 py-2 border-gray-400 text-gray-400' disabled>Sign Up</button> :
-                    <button onClick={userSubmit} className='my-6 border-b-2 border-blue-700 px-5 py-2 text-blue-700 hover:font-medium'>Sign Up</button> }
+                        <button onClick={userSubmit} className='my-6 border-b-2 border-blue-700 px-5 py-2 text-blue-700 hover:font-medium'>Sign Up</button>}
                     <p>Already have Funtechgram account? <span><Link to={'/'} className='text-red-500'>Login</Link></span></p>
                 </div>
             </div>
