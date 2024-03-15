@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
 import DetailPost from '../../Modal/DetailPost'
 import Search from '../Search/Index'
 import { useDispatch, useSelector } from 'react-redux'
 import getPostsAction from '../../../config/redux/action/postsAction/getPostsAction'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Content = () => {
-    const [isLoading, setIsLoading] = useState(true)
+    // const [isLoading, setIsLoading] = useState(true)
+    const [hasMore, setHasMore] = useState(true)
     const dispatch = useDispatch();
+    const [limit, setLimit] = useState(9);
     const { posts } = useSelector((state) => state.posts);
+
+    const moreData = () => {
+        setTimeout(() => {
+            setLimit(limit + 9)
+        }, 500);
+        posts.length >= limit ? setHasMore(true) : setHasMore(false)
+    }
+
     useEffect(() => {
-        dispatch(getPostsAction({ page: 1, limit: 9 }, setIsLoading));
+        dispatch(getPostsAction({ page: 1, limit: `${limit}` }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [setIsLoading]);
+    }, [dispatch, limit]);
 
     return (
         <>
@@ -20,17 +30,31 @@ const Content = () => {
                 <Search />
             </div>
             <div className='w-full justify-center flex'>
-                <div className='py-6 md:py-2'>
-                    <div className='grid grid-cols-3 gap-1 sm:gap-0.5 max-w-[60rem]'>
-                        {posts.map((posts, Index) => (
-                            <DetailPost key={Index} img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}>
-                                <div className='aspect-square'>
-                                    <img src={posts.post_image} alt="content" className="w-full h-full object-cover" />
-                                </div>
-                            </DetailPost>
-                        ))}
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    next={moreData}
+                    hasMore={hasMore}
+                    loader={
+                        <h4 className="text-center">
+                            <div
+                                className="inline-block my-2 h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                                role="status">
+                            </div>
+                        </h4>
+                    }
+                >
+                    <div className='py-6 md:py-2'>
+                        <div className='grid grid-cols-3 gap-1 sm:gap-0.5 max-w-[60rem]'>
+                            {posts.map((posts, Index) => (
+                                <DetailPost key={Index} img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}>
+                                    <div className='aspect-square'>
+                                        <img src={posts.post_image} alt="content" className="w-full h-full object-cover" />
+                                    </div>
+                                </DetailPost>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                </InfiniteScroll>
             </div>
         </>
     )

@@ -1,38 +1,29 @@
 // import { Carousel } from '@material-tailwind/react'
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import CardSection from '../../Skeleton/CardSection'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Card from './Card'
+import { useDispatch, useSelector } from 'react-redux'
+import getPostsAction from '../../../config/redux/action/postsAction/getPostsAction'
 
 const Content = () => {
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
-    const [posts, setPosts] = useState([]);
-    const [hasMore, setHasMore] = useState(true);
-    const [index, setIndex] = useState(2);
+    const [hasMore, setHasMore] = useState(true)
+    const [limit, setLimit] = useState(5);
+    const { posts } = useSelector((state) => state.posts);
+
+    const moreData = () => {
+        setTimeout(() => {
+            setLimit(limit + 5)
+        }, 500);
+        posts.length >= limit ? setHasMore(true) : setHasMore(false)
+    }
 
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/post`, { params: { page: 1, limit: 5 } })
-            .then((res) => {
-                setPosts(res.data.data)
-                setIsLoading(false)
-            })
-            .catch((err) => console.log(err));
-    }, []);
-
-    const fetchMoreData = () => {
-        setTimeout(() => {
-            axios
-                .get(`${process.env.REACT_APP_API_KEY}/post`, { params: { page: `${index}`, limit: 5 } })
-                .then((res) => {
-                    setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
-                    res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
-                })
-                .catch((err) => console.log(err));
-            setIndex((prevIndex) => prevIndex + 1);
-        }, 1000);
-    };
+        dispatch(getPostsAction({ page: 1, limit: `${limit}` }, setIsLoading))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, limit]);
 
     return (
         <>
@@ -41,9 +32,16 @@ const Content = () => {
                     <CardSection /> :
                     <InfiniteScroll
                         dataLength={posts.length}
-                        next={fetchMoreData}
+                        next={moreData}
                         hasMore={hasMore}
-                        loader={<h4 className="text-center text-xl font-semibold my-2">Loading...</h4>}
+                        loader={
+                            <h4 className="text-center">
+                                <div
+                                    className="inline-block my-2 h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                                    role="status">
+                                </div>
+                            </h4>
+                        }
                     >
                         <div>
                             {posts.map((posts, Index) => (
