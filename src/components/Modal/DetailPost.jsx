@@ -2,55 +2,58 @@ import React, { useEffect, useState } from 'react'
 import Modal from '@mui/material/Modal';
 import { BsBookmark, BsChatLeftText, BsHeart, BsShare, BsThreeDots } from 'react-icons/bs';
 import { FaArrowLeft } from "react-icons/fa";
-import axios from 'axios';
-import Swal from 'sweetalert2';
+// import axios from 'axios';
+// import Swal from 'sweetalert2';
+import { useDispatch, useSelector } from 'react-redux';
+import getCommetsAction from '../../config/redux/action/commentsAction/getCommentsAction';
+import getDetailPostAction from '../../config/redux/action/postsAction/getDetailPostAction';
+import createCommentAction from '../../config/redux/action/commentsAction/createCommentAction';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const DetailPost = ({ img, nick, caption, id, children }) => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = useState(false);
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+    const navigate = useNavigate();
+    const handleOpen = () => {
+        setOpen(true);
+        // setSearchParams({ q: searchQuery });
+        // navigate(`?p=${id}`);
+    }
+    const handleClose = () => {
+        setOpen(false);
+        // navigate(-1)
+    }
+    const dispatch = useDispatch()
 
-    const [comments, setComments] = useState([])
-
+    const { postDetail } = useSelector((state) => state.posts)
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_KEY}/comment/${id}`)
-            .then((res) => {
-                setComments(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [id])
+        dispatch(getDetailPostAction(id))
+    }, [dispatch, id])
+
+    const { comments } = useSelector((state) => state.comments)
+    useEffect(() => {
+        dispatch(getCommetsAction(id))
+    }, [dispatch, id])
 
     const userNick = localStorage.getItem("userNick")
 
-    const [comment, setComment] = useState({
+    const [data, setData] = useState({
         comment_text: "",
         post_id: id,
         user_nickname: userNick,
     });
-
+ 
     const commentChange = (e) => {
-        setComment({
-            ...comment,
+        setData({
+            ...data,
             [e.target.name]: e.target.value,
         });
     };
 
     const onSent = (e) => {
         e.preventDefault();
-        axios.post(`${process.env.REACT_APP_API_KEY}/comment`, comment)
-            .then((res) => {
-                Swal.fire({
-                    icon: "success",
-                    title: res.data.message,
-                });
-                // window.location.reload()
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        dispatch(createCommentAction(data))
     }
 
     return (
@@ -63,11 +66,11 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
                 aria-describedby="modal-modal-description"
                 className='flex justify-center items-center backdrop-blur-sm'
             >
-                <div className='bg-white minmd:w-9/12 grid minmd:grid-cols-2 rounded'>
-                    <section className='flex items-center h-full md:hidden'>
+                <div className='bg-white minmd:w-9/12 grid minmd:grid-cols-5 rounded'>
+                    <section className='flex items-center h-full md:hidden col-span-3'>
                         <img src={img} alt="post" />
                     </section>
-                    <section className='minmd:border-s relative md:h-screen overflow-auto'>
+                    <section className='minmd:border-s relative md:h-screen overflow-auto col-span-2'>
                         <div className='flex p-3 justify-between items-center border-b'>
                             <FaArrowLeft className='minmd:hidden' onClick={handleClose} />
                             <div className='flex items-center'>
@@ -111,7 +114,7 @@ const DetailPost = ({ img, nick, caption, id, children }) => {
                                 </div>
                                 <div className='p-3 flex'>
                                     <input type="text" placeholder='Add comment' className='outline-none w-full' id='comment' name='comment_text' onChange={commentChange} />
-                                    {comment.comment_text ?
+                                    {data.comment_text ?
                                         <button className='text-blue-500' onClick={onSent}>Sent</button> :
                                         <button className='text-gray-500 cursor-not-allowed' disabled>Sent</button>
                                     }

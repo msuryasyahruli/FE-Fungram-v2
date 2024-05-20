@@ -6,7 +6,7 @@ const Navigate = () => {
     return (
         <>
             <div className='flex'>
-                <div className='w-fit minmd:h-svh minmd:border-e fixed bottom-0 md:w-full bg-white z-10'>
+                <div className='w-fit minmd:h-svh minmd:border-e fixed bottom-0 md:w-full bg-white'>
                     <Sidebar />
                 </div>
                 <div className='w-svw minxl:ms-48 minmd:ms-20 md:my-12'>

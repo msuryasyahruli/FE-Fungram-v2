@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { BsBookmark, BsChatLeftText, BsHeart, BsHeartFill, BsShare, BsThreeDots } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-import DetailPost from '../../Modal/DetailPost'
+import { Link, useLocation } from 'react-router-dom'
+// import DetailPost from '../../Modal/DetailPost'
 
 const Card = ({ posts }) => {
     const userNick = localStorage.getItem("userNick")
+    const location = useLocation();
 
-    const [like, setLike] = useState(999),
+    const [like, setLike] = useState(0),
         [isLike, setIsLike] = useState(false),
         onClickLike = () => {
             setLike(like + (isLike ? -1 : 1));
@@ -47,9 +48,13 @@ const Card = ({ posts }) => {
                 <div className='flex justify-between text-2xl my-2 2sm:px-2'>
                     <div className='flex space-x-4'>
                         <button className='hover:text-gray-500' onClick={onClickLike} >{isLike ? <BsHeartFill className='text-red-900' /> : <BsHeart />}</button>
-                        <DetailPost img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}>
-                            <div className='hover:text-gray-500'><BsChatLeftText /></div>
-                        </DetailPost>
+                        {/* <DetailPost img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}> */}
+                        <button className='hover:text-gray-500'>
+                            <Link to={`/p/${posts.post_id}`} state={{ background: location }}>
+                                <BsChatLeftText />
+                            </Link>
+                        </button>
+                        {/* </DetailPost> */}
                         <button className='hover:text-gray-500'><BsShare /></button>
                     </div>
                     <div>

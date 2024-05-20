@@ -4,23 +4,25 @@ import Search from '../Search/Index'
 import { useDispatch, useSelector } from 'react-redux'
 import getPostsAction from '../../../config/redux/action/postsAction/getPostsAction'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { Link, useLocation } from 'react-router-dom'
 
 const Content = () => {
-    // const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
     const [hasMore, setHasMore] = useState(true)
     const dispatch = useDispatch();
-    const [limit, setLimit] = useState(9);
+    const location = useLocation();
+    const [limit, setLimit] = useState(12);
     const { posts } = useSelector((state) => state.posts);
 
     const moreData = () => {
         setTimeout(() => {
-            setLimit(limit + 9)
+            setLimit(limit + 12)
         }, 500);
         posts.length >= limit ? setHasMore(true) : setHasMore(false)
     }
 
     useEffect(() => {
-        dispatch(getPostsAction({ page: 1, limit: `${limit}` }));
+        dispatch(getPostsAction({ page: 1, limit: `${limit}` }, setIsLoading));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, limit]);
 
@@ -46,11 +48,11 @@ const Content = () => {
                     <div className='py-6 md:py-2'>
                         <div className='grid grid-cols-3 gap-1 sm:gap-0.5 max-w-[60rem]'>
                             {posts.map((posts, Index) => (
-                                <DetailPost key={Index} img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}>
-                                    <div className='aspect-square'>
-                                        <img src={posts.post_image} alt="content" className="w-full h-full object-cover" />
-                                    </div>
-                                </DetailPost>
+                               // <DetailPost img={posts.post_image} nick={posts.user_nickname} caption={posts.post_captions} id={posts.post_id}>
+                                    <Link key={Index} to={`/p/${posts.post_id}`} state={{ background: location }}>
+                                        <img src={posts.post_image} alt="content" className=" object-cover aspect-square" />
+                                    </Link>
+                               // </DetailPost>
                             ))}
                         </div>
                     </div>
