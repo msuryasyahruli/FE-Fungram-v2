@@ -1,8 +1,11 @@
 import React from 'react'
+import Index from '../components/Pages/Chat/Chat'
 
 const Chat = () => {
   return (
-    <div>Chat</div>
+    <>
+      <Index />
+    </>
   )
 }
 

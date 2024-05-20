@@ -1,12 +1,14 @@
 import React from "react";
 import Home from "../components/Index.jsx";
+import DetailPost from "../components/Modal/DetailPost.jsx";
 
-const Index = () => {
+const Test = () => {
   return (
     <>
-      <Home />
+      {/* <Home /> */}
+      <DetailPost/>
     </>
   );
 };
 
-export default Index;
+export default Test;
