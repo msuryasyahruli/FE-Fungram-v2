@@ -14,15 +14,13 @@ const createPostAction = (data, photo) => async (dispatch) => {
         })
         const result = post.data.data;
         dispatch({ type: "CREATE_POST", payload: result })
-            .then((res) => {
-                Swal.fire({
-                    icon: "success",
-                    title: res.data.message,
-                });
-                // setTimeout(function () {
-                //     window.location.reload();
-                // }, 1000);
-            })
+        Swal.fire({
+            icon: "success",
+            title: "Post Created",
+        });
+        setTimeout(function () {
+            window.location.reload();
+        }, 1000);
     } catch (err) {
         console.log(err);
         Swal.fire({

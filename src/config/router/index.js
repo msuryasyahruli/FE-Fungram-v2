@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Navigation from "../../components/Navigation/Navigate";
 import Home from "../../pages/Home";
 import Search from "../../pages/Search";
@@ -11,14 +11,16 @@ import Post from "../../pages/Post";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
 import ViewerProfile from "../../pages/ViewerProfile";
+import Modal from "../../components/Modal/Modal";
 
 const Router = () => {
   const token = localStorage.getItem("token");
+  const location = useLocation();
+  const background = location.state && location.state.background;
 
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
+    <>
+        <Routes location={background || location}>
           {!token ? (
             <Route
               path="/"
@@ -34,13 +36,18 @@ const Router = () => {
               <Route path=":userNick" element={<Profile />} />
               <Route path="setting" element={<Setting />} />
               <Route path=":nick/:id" element={<ViewerProfile />} />
+              <Route path="p/:postId" element={<Modal />} />
             </Route>
           )}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+        {background && (
+          <Routes>
+            <Route path="p/:postId" element={<Modal />} />
+          </Routes>
+        )}
+    </>
   );
 };
 
